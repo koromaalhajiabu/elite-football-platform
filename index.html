@@ -1,58 +1,30 @@
-<!-- Insert this corrective script layer right before your </body> tag -->
-<script>
-    (function() {
-        // Core Routine: Forces structural layout locks to drop automatically on mobile/desktop screens
-        function executeGlobalEmergencyUnfreeze() {
-            console.log("⚡ SLFA System Developer Warning: Initializing Governance Overrides Pipeline...");
+        function applySecurityMatrix() {
+            const role = document.getElementById('sessionRole').value;
+            document.getElementById('clubLock').style.display = (role === 'Club Admin' || role === 'Master Developer Access') ? 'none' : 'flex';
+        }
 
-            // 1. Force state flags to clear in case they are trapped in LocalStorage
-            localStorage.setItem('isSystemFrozen', 'false');
-            localStorage.setItem('slpl_system_frozen', 'false');
-
-            // 2. Scan and destroy blur visual restriction frames from the DOM tree
-            const lockoutMasks = document.querySelectorAll('.security-lockout, #clubLock, #devLock, .restriction-overlay');
-            lockoutMasks.forEach(mask => {
-                mask.style.setProperty('display', 'none', 'important');
-            });
-
-            // 3. Unlocks disabled text inputs, dropdown selections, and files submit fields
-            const blockedInputs = document.querySelectorAll('input, select, textarea, button');
-            blockedInputs.forEach(input => {
-                input.removeAttribute('disabled');
-                input.disabled = false;
-            });
-
-            // 4. Force state badges to render green indicators
-            const statusBadges = document.querySelectorAll('#freezeStatusBadge, .badge');
-            statusBadges.forEach(badge => {
-                if (badge.innerText && badge.innerText.includes('FREEZE')) {
-                    badge.style.background = "rgba(16, 185, 129, 0.1)";
-                    badge.style.color = "#10b981";
-                    badge.innerText = "System Status: Operational";
+        function toggleBroadcast(show) { document.getElementById('globalBroadcast').style.display = show ? 'flex' : 'none'; }
+        
+        function searchTable() {
+            const query = document.getElementById('tableFilter').value.toLowerCase();
+            const rows = document.getElementById('standingsBody').getElementsByTagName('tr');
+            for (let i = 0; i < rows.length; i++) {
+                if(rows[i].cells.length > 1) {
+                    const teamName = rows[i].cells[1].innerText.toLowerCase();
+                    rows[i].style.display = teamName.includes(query) ? '' : 'none';
                 }
-            });
-
-            // 5. Clear critical error marquee lines from top navigation banners
-            const bannerText = document.getElementById('bannerText');
-            if (bannerText) {
-                bannerText.innerText = "📢 SLFA Operational Workspace: Governance Access Restored successfully.";
-            }
-
-            // 6. Reset UI display blocks if wrapped in hidden elements
-            const devPanel = document.getElementById('devPanel');
-            if (devPanel) {
-                devPanel.style.setProperty('display', 'block', 'important');
             }
         }
 
-        // Run instantly when the browser finishes reading structural parameters
-        if (document.readyState === 'loading') {
-            document.addEventListener('DOMContentLoaded', executeGlobalEmergencyUnfreeze);
-        } else {
-            executeGlobalEmergencyUnfreeze();
+        window.onload = function() {
+            applySecurityMatrix();
+            document.getElementById('connectClusterBtn').addEventListener('click', function(e) { e.preventDefault(); initializeSupabasePipeline(); });
+            const savedTheme = localStorage.getItem('slpl_saved_theme');
+            if (savedTheme) { document.getElementById('themeSelector').value = savedTheme; document.body.setAttribute('data-theme', savedTheme); }
+            const cachedUrl = localStorage.getItem('sb_cached_url');
+            const cachedKey = localStorage.getItem('sb_cached_key');
+            if (cachedUrl && cachedKey) { document.getElementById('sbUrl').value = cachedUrl; document.getElementById('sbKey').value = cachedKey; initializeSupabasePipeline(); }
         }
-
-        // Redundant Interval Hook: Guarantees loops don't lock your device screen back up during runtime transactions
-        setInterval(executeGlobalEmergencyUnfreeze, 1500);
-    })();
-</script>
+    </script>
+</body>
+</html>
