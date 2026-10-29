@@ -4,6 +4,12 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="theme-color" content="#0b1728">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Elite FM">
+<link rel="manifest" href="./manifest.webmanifest">
+<link rel="icon" href="./icon-192.png" type="image/png">
+<link rel="apple-touch-icon" href="./icon-192.png">
 <title>Elite Football Manager</title>
 <style>
 :root{--bg:#f3f6fa;--surface:#fff;--ink:#152238;--muted:#69778c;--line:#e1e7ef;--navy:#0b1728;--navy2:#122944;--gold:#e6b94f;--green:#13865c;--red:#bd3d4b;--shadow:0 12px 32px rgba(14,32,56,.08)}
@@ -422,6 +428,60 @@ $('authLayer').style.display='none';$('mainApp').style.display='block';$('signIn
 renderSecurityConsole();
 
 })();
+</script>
+
+<!-- Install support: offline use and "Install app" prompt -->
+<style>#installBar[hidden],#installBtn[hidden]{display:none!important}</style>
+<div id="installBar" hidden style="position:fixed;right:12px;bottom:12px;z-index:50;display:flex;gap:8px;align-items:center;background:#111e30;border:1px solid #26364b;border-radius:12px;padding:8px 10px;box-shadow:0 10px 28px rgba(0,0,0,.35);font:600 12px system-ui,sans-serif;color:#e8eef8;max-width:calc(100vw - 24px);">
+  <span id="installText">Install Elite Football Manager</span>
+  <button id="installBtn" type="button" style="border:0;border-radius:8px;padding:7px 11px;font:700 12px system-ui,sans-serif;background:#e6b94f;color:#0b1728;cursor:pointer;">Install</button>
+  <button id="installClose" type="button" aria-label="Dismiss" style="border:0;background:transparent;color:#a0aec1;font-size:16px;cursor:pointer;line-height:1;">&times;</button>
+</div>
+<script>
+  (function () {
+    if ('serviceWorker' in navigator && (location.protocol === 'https:' || location.hostname === 'localhost')) {
+      window.addEventListener('load', function () {
+        navigator.serviceWorker.register('./service-worker.js').catch(function (err) {
+          console.warn('Offline support registration failed:', err);
+        });
+      });
+    }
+
+    var bar = document.getElementById('installBar');
+    var text = document.getElementById('installText');
+    var btn = document.getElementById('installBtn');
+    var standalone = window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone === true;
+    var dismissed = false;
+    try { dismissed = localStorage.getItem('elite_install_dismissed') === '1'; } catch (e) {}
+    var deferred = null;
+
+    function hide() { bar.hidden = true; }
+    document.getElementById('installClose').addEventListener('click', function () {
+      try { localStorage.setItem('elite_install_dismissed', '1'); } catch (e) {}
+      hide();
+    });
+
+    window.addEventListener('beforeinstallprompt', function (e) {
+      e.preventDefault();
+      deferred = e;
+      if (!standalone && !dismissed) { btn.hidden = false; text.textContent = 'Install Elite Football Manager'; bar.hidden = false; }
+    });
+
+    btn.addEventListener('click', function () {
+      if (!deferred) return;
+      deferred.prompt();
+      deferred.userChoice.finally(function () { deferred = null; hide(); });
+    });
+
+    window.addEventListener('appinstalled', hide);
+
+    var isIOS = /iphone|ipad|ipod/i.test(navigator.userAgent);
+    if (isIOS && !standalone && !dismissed) {
+      text.textContent = 'To install: tap Share, then "Add to Home Screen"';
+      btn.hidden = true;
+      bar.hidden = false;
+    }
+  })();
 </script>
 </body>
 </html>
