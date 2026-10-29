@@ -1,0 +1,487 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#0b1728">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Elite FM">
+<link rel="manifest" href="./manifest.webmanifest">
+<link rel="icon" href="./icon-192.png" type="image/png">
+<link rel="apple-touch-icon" href="./icon-192.png">
+<title>Elite Football Manager</title>
+<style>
+:root{--bg:#f3f6fa;--surface:#fff;--ink:#152238;--muted:#69778c;--line:#e1e7ef;--navy:#0b1728;--navy2:#122944;--gold:#e6b94f;--green:#13865c;--red:#bd3d4b;--shadow:0 12px 32px rgba(14,32,56,.08)}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.5 Inter,ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Arial}button,input,select{font:inherit}button{cursor:pointer;border:0;border-radius:10px;padding:10px 14px;font-weight:700;transition:.15s}button:focus-visible,input:focus-visible,select:focus-visible{outline:3px solid #e6b94f;outline-offset:2px}.primary{background:var(--navy);color:white}.primary:hover{background:#1b3656}.gold{background:var(--gold);color:#182338}.soft{background:#edf2f8;color:#23354d}.danger{background:#fff0f0;color:var(--red)}.app{min-height:100vh}.topbar{background:linear-gradient(115deg,var(--navy),#173452);color:white;padding:22px clamp(16px,4vw,48px);display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap;border-bottom:3px solid var(--gold)}.brand{display:flex;gap:13px;align-items:center}.crest{width:48px;height:48px;border-radius:14px;background:var(--gold);color:var(--navy);display:grid;place-items:center;font-size:24px;font-weight:900;box-shadow:0 5px 20px #0003}.brand h1{font-size:clamp(20px,3vw,28px);line-height:1.1;margin:0;letter-spacing:-.7px}.brand p{margin:5px 0 0;color:#bdcadd;font-size:12px;letter-spacing:1.6px;text-transform:uppercase}.top-actions{display:flex;gap:9px;flex-wrap:wrap}.top-actions button{font-size:13px}.top-actions .soft{background:#ffffff16;color:white;border:1px solid #ffffff24}.shell{max-width:1400px;margin:auto;padding:24px clamp(12px,3vw,36px) 42px}.welcome{display:flex;justify-content:space-between;align-items:end;gap:14px;flex-wrap:wrap;margin-bottom:20px}.welcome h2{margin:0;font-size:25px;letter-spacing:-.6px}.welcome p{margin:4px 0 0;color:var(--muted)}.status{font-size:12px;color:var(--green);font-weight:800;background:#e5f7ef;border-radius:999px;padding:7px 11px}.stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px;margin-bottom:22px}.stat,.panel{background:var(--surface);border:1px solid var(--line);border-radius:16px;box-shadow:var(--shadow)}.stat{padding:18px}.stat .label{font-size:12px;color:var(--muted);font-weight:800;text-transform:uppercase;letter-spacing:.8px}.stat .value{font-size:30px;font-weight:850;letter-spacing:-1px;margin-top:7px}.stat .hint{font-size:12px;color:var(--muted);margin-top:2px}.layout{display:grid;grid-template-columns:minmax(0,1.4fr) minmax(280px,.8fr);gap:18px;align-items:start}.panel{padding:20px;min-width:0;margin-bottom:18px}.panel-head{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:15px}.panel h3{margin:0;font-size:17px;letter-spacing:-.3px}.sub{color:var(--muted);font-size:13px;margin:4px 0 0}.tools{display:flex;gap:8px;flex-wrap:wrap}.field{display:flex;flex-direction:column;gap:6px;min-width:0}.field label{font-size:12px;font-weight:800;color:#516077}.field input,.field select,.search{width:100%;border:1px solid #d7e0eb;border-radius:10px;background:#fff;padding:11px 12px;color:var(--ink);min-width:0}.form-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.form-grid .full{grid-column:1/-1}.actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}.tablewrap{overflow:auto;border:1px solid var(--line);border-radius:12px}table{width:100%;border-collapse:collapse;white-space:nowrap;font-size:13px}th{text-align:left;background:#f6f8fb;color:#617087;font-size:11px;text-transform:uppercase;letter-spacing:.6px;padding:12px 13px}td{padding:12px 13px;border-top:1px solid #edf1f6}tbody tr:hover{background:#fafcff}.rank{font-weight:850;color:#68778b}.team{font-weight:800}.team small{display:block;color:var(--muted);font-weight:500;font-size:11px}.pill{display:inline-block;border-radius:7px;background:#eef3f8;padding:4px 7px;font-weight:800;font-size:11px}.positive{color:var(--green)}.negative{color:var(--red)}.empty{padding:25px;text-align:center;color:var(--muted)}.match-list{display:flex;flex-direction:column;gap:9px}.match{display:grid;grid-template-columns:1fr auto 1fr;gap:9px;align-items:center;padding:12px;border:1px solid var(--line);border-radius:12px}.match .club{font-size:13px;font-weight:800;min-width:0;overflow-wrap:anywhere}.match .club:last-child{text-align:right}.score{font-weight:900;background:#f0f4f8;border-radius:8px;padding:7px 10px;min-width:64px;text-align:center}.match-meta{font-size:11px;color:var(--muted);margin-top:3px}.muted{color:var(--muted)}.notice{border-radius:11px;background:#fff8e5;color:#76591a;padding:12px;font-size:12px;margin-top:14px}.footer{text-align:center;color:#8490a1;font-size:12px;padding:15px}.toast{position:fixed;bottom:20px;left:50%;transform:translateX(-50%);background:#13263d;color:white;padding:12px 18px;border-radius:12px;box-shadow:var(--shadow);display:none;z-index:10;max-width:90vw}.toast.show{display:block}.section-title{display:flex;align-items:center;gap:8px}.dot{width:8px;height:8px;background:var(--gold);border-radius:50%}.hidden{display:none!important}
+body[data-theme="dark"]{--bg:#0a1220;--surface:#111e30;--ink:#e8eef8;--muted:#a0aec1;--line:#26364b;--shadow:0 12px 32px #0002}body[data-theme="dark"] .field input,body[data-theme="dark"] .field select,body[data-theme="dark"] .search{background:#0d1929;color:var(--ink);border-color:#30425b}body[data-theme="dark"] th,body[data-theme="dark"] .score,body[data-theme="dark"] .pill{background:#1b2a40;color:#dbe5f4}body[data-theme="dark"] tbody tr:hover{background:#14243a}body[data-theme="dark"] td{border-color:#26364b}
+@media(max-width:900px){.stats{grid-template-columns:repeat(2,minmax(0,1fr))}.layout{grid-template-columns:1fr}.shell{padding-top:18px}.panel{padding:15px}}@media(max-width:480px){.stats{gap:9px}.stat{padding:13px}.stat .value{font-size:25px}.form-grid{grid-template-columns:1fr}.form-grid .full{grid-column:auto}.topbar{padding:17px 14px}.brand p{font-size:10px}.match{gap:5px}.match .club{font-size:12px}.score{padding:7px 6px;min-width:54px}}
+
+.auth-layer{position:fixed;inset:0;z-index:1000;background:linear-gradient(135deg,#081321,#173451);display:grid;place-items:center;padding:18px;overflow:auto}
+.auth-card{width:min(100%,460px);background:#fff;color:#152238;border-radius:22px;padding:26px;box-shadow:0 30px 90px #0006}
+.auth-brand{display:flex;align-items:center;gap:12px;margin-bottom:18px}.auth-brand .crest{flex:none}
+.auth-card h2{margin:0 0 6px;font-size:25px}.auth-card p{color:#68778c;font-size:13px}
+.auth-card .field{margin:12px 0}.auth-card .field input,.auth-card .field select{width:100%;padding:12px;border:1px solid #d7e0eb;border-radius:10px}
+.auth-error{color:#bd3d4b!important;font-weight:700;min-height:18px}
+.security-banner{padding:12px 15px;border-radius:12px;margin:0 0 16px;background:#fff4d7;border:1px solid #f0d68d;color:#6f5317;font-size:13px}
+.broadcast-banner{padding:13px 15px;background:#e8f2ff;color:#163d67;border:1px solid #c8ddf7;border-radius:12px;margin-bottom:16px;white-space:pre-wrap}
+.freeze-screen{position:fixed;inset:0;z-index:900;background:#081321f5;color:#fff;display:none;place-items:center;text-align:center;padding:24px}
+.freeze-screen .freeze-card{max-width:520px}.freeze-screen h2{font-size:28px}.freeze-screen p{color:#c6d2e0}
+.admin-console{margin-bottom:18px}.admin-console details{border:1px solid var(--line);border-radius:14px;padding:14px;background:var(--surface)}.admin-console summary{font-weight:800;cursor:pointer}.admin-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin-top:15px}.admin-grid input,.admin-grid select,.admin-grid textarea{width:100%;padding:10px;border:1px solid var(--line);border-radius:9px;background:var(--surface);color:var(--ink)}.admin-grid .full{grid-column:1/-1}.user-row{display:flex;justify-content:space-between;align-items:center;gap:8px;padding:10px 0;border-top:1px solid var(--line);flex-wrap:wrap}.user-row small{display:block;color:var(--muted)}.user-row button{font-size:12px;padding:7px 9px}.disabled-feature{opacity:.55;pointer-events:none}
+@media(max-width:500px){.auth-card{padding:20px}.admin-grid{grid-template-columns:1fr}.admin-grid .full{grid-column:auto}}
+
+body.public-mode #adminConsole,body.public-mode #logoutBtn,body.public-mode #clubForm,body.public-mode #matchForm,body.public-mode #clubAdminList,body.public-mode #competitionForm,body.public-mode #fixtureForm,body.public-mode #playerForm,body.public-mode [data-delete-match],body.public-mode [data-delete-club],body.public-mode [data-delete-fixture],body.public-mode [data-delete-player]{display:none!important}
+body.viewer-mode #mainApp form button[type="submit"]{display:none!important}body.public-mode #themeBtn,body.public-mode #exportBtn,body.public-mode #importBtn{display:none!important}body.public-mode .top-actions{gap:9px}body.public-mode .top-actions #signInBtn{display:inline-flex!important}body.public-mode .top-actions #themeBtn,body.public-mode .top-actions #exportBtn,body.public-mode .top-actions #importBtn{display:none!important}body.viewer-mode #mainApp form{opacity:.78}body.viewer-mode #mainApp [data-delete-match],body.viewer-mode #mainApp [data-delete-club],body.viewer-mode #mainApp [data-delete-fixture],body.viewer-mode #mainApp [data-delete-player]{display:none!important}
+</style>
+</head>
+<body class="public-mode viewer-mode">
+
+<div id="authLayer" class="auth-layer" style="display:none">
+  <div class="auth-card">
+    <div class="auth-brand"><div class="crest">EF</div><div><strong>ELITE FOOTBALL MANAGER</strong><div class="muted" style="font-size:12px">Secure access portal</div></div></div>
+    <h2 id="authHeading">Sign in</h2>
+    <p id="authIntro">The Viewer panel is the default. Sign in only when you need authorized editing access.</p>
+    <form id="loginForm">
+      <div class="field"><label for="loginUser">Username</label><input id="loginUser" autocomplete="username" required maxlength="60" placeholder="Enter username"></div>
+      <div class="field"><label for="loginPass">Password</label><input id="loginPass" type="password" autocomplete="current-password" required maxlength="200" placeholder="Enter password"></div>
+      <button class="primary" style="width:100%;margin-top:8px" type="submit">Sign in</button>
+      <div id="authError" class="auth-error" aria-live="polite"></div>
+    </form>
+    <p id="setupIntro"><strong>Account status:</strong> this file will check for an existing Master Developer account. Do not create another account if you already made one.</p>
+    <button id="setupDeveloperBtn" class="soft" style="width:100%" type="button">Master Developer account options</button>
+    <div id="setupDeveloperStatus" class="auth-error" aria-live="polite" style="margin-top:8px"></div>
+    <form id="developerSetupForm" class="hidden" style="margin-top:14px" autocomplete="on">
+      <div class="field"><label for="setupUsername">Master Developer username</label><input id="setupUsername" autocomplete="username" required minlength="4" maxlength="60" placeholder="Choose a username"></div>
+      <div class="field"><label for="setupPassword">Create password (12+ characters)</label><input id="setupPassword" type="password" autocomplete="new-password" required minlength="12" maxlength="200" placeholder="Create a strong password"></div>
+      <div class="field"><label for="setupPasswordConfirm">Confirm password</label><input id="setupPasswordConfirm" type="password" autocomplete="new-password" required minlength="12" maxlength="200" placeholder="Enter the password again"></div>
+      <button class="primary" type="submit" style="width:100%;margin-top:8px">Save Developer account</button>
+      <button id="cancelDeveloperSetupBtn" class="soft" type="button" style="width:100%;margin-top:8px">Cancel</button>
+    </form>
+    <p style="font-size:11px">Security note: this standalone file stores accounts on this device. It is not server-enforced authentication and cannot securely protect data from someone who can inspect or alter the HTML/browser storage. Real multi-device authentication needs a configured backend.</p>
+  </div>
+</div>
+<div id="freezeScreen" class="freeze-screen"><div class="freeze-card"><div class="crest" style="margin:auto">EF</div><h2>System temporarily suspended</h2><p id="freezeMessage">This platform has been paused by the Developer.</p><p>Sign in as Developer to review and reactivate the platform.</p><button id="freezeDeveloperLogin" class="gold">Developer sign-in</button></div></div>
+
+<div class="app" id="mainApp" style="display:block">
+<header class="topbar">
+  <div class="brand"><div class="crest">EF</div><div><h1>Elite Football Manager</h1><p>Competition operations platform</p></div></div>
+  <div class="top-actions">
+    <button class="soft" id="signInBtn" type="button" aria-controls="authLayer" aria-haspopup="dialog" onclick="(function(){var l=document.getElementById('authLayer');var m=document.getElementById('mainApp');var f=document.getElementById('freezeScreen');if(f)f.style.display='none';if(m)m.style.display='block';if(l){l.classList.remove('hidden');l.style.setProperty('display','grid','important');l.style.setProperty('visibility','visible','important');l.style.setProperty('opacity','1','important');l.style.setProperty('pointer-events','auto','important');l.style.setProperty('z-index','99999','important');}var h=document.getElementById('authHeading');if(h)h.textContent='Sign in for editing';var i=document.getElementById('authIntro');if(i)i.textContent='Enter the username and password for your existing Master Developer account.';var u=document.getElementById('loginUser');if(u)u.focus();})()">Sign in for editing</button>
+    <button class="soft" id="themeBtn">◐ Theme</button>
+    <button class="soft" id="exportBtn">↓ Export backup</button>
+    <button class="soft" id="importBtn">↑ Restore backup</button>
+    <input type="file" id="restoreFile" accept="application/json,.json" class="hidden">
+  </div>
+</header>
+<main class="shell">
+  <div class="welcome"><div><h2>Competition dashboard</h2><p>Manage clubs, record results and follow the league table.</p></div><span class="status" id="saveStatus">● Saved on this device</span></div>
+
+  <div id="securityBanner" class="security-banner">Local device mode: records are saved in this browser. Export backups regularly.</div>
+  <div id="broadcastBanner" class="broadcast-banner hidden"></div>
+  <section class="panel admin-console" id="adminConsole" style="display:none">
+    <details id="adminDetails">
+      <summary>Platform control centre · <span id="currentRoleLabel">Role</span></summary>
+      <p class="sub">Manage access, platform status and announcements. Controls are stored locally in this browser.</p>
+      <div class="admin-grid">
+        <div class="field"><label for="newUsername">New username</label><input id="newUsername" maxlength="60" placeholder="username"></div>
+        <div class="field"><label for="newUserRole">Access role</label><select id="newUserRole"><option value="admin">Platform Admin</option><option value="organizer">Competition Organizer</option><option value="viewer">Viewer (read-only)</option></select></div>
+        <div class="field"><label for="newUserPassword">Temporary password</label><input id="newUserPassword" type="password" maxlength="200" placeholder="Set a password"></div>
+        <div class="field"><label for="newUserClub">Assigned club (optional)</label><select id="newUserClub"><option value="">Choose club</option></select></div>
+        <div class="full"><button id="addUserBtn" class="primary" type="button">Create account</button></div>
+        <div class="field full"><label for="broadcastText">Global announcement</label><textarea id="broadcastText" rows="2" maxlength="500" placeholder="Message shown to users"></textarea></div>
+        <div class="full"><button id="publishBroadcastBtn" class="soft" type="button">Publish announcement</button> <button id="clearBroadcastBtn" class="soft" type="button">Clear announcement</button></div>
+        <div class="full"><button id="freezeBtn" class="danger" type="button">Suspend platform</button> <button id="unfreezeBtn" class="primary" type="button">Reactivate platform</button></div>
+        <div class="full"><strong>Accounts</strong><div id="userList"></div></div>
+        <div class="full"><strong>Recent security activity</strong><div id="auditList" class="sub">No activity recorded yet.</div></div>
+      </div>
+    </details>
+  </section>
+  <div class="tools" style="justify-content:flex-end;margin-bottom:14px">
+    <span id="sessionLabel" class="pill">Signed out</span>
+    <button id="logoutBtn" class="soft" type="button">Sign out</button>
+  </div>
+
+  <section class="stats">
+    <div class="stat"><div class="label">Registered clubs</div><div class="value" id="clubCount">0</div><div class="hint">Teams in this competition</div></div>
+    <div class="stat"><div class="label">Matches played</div><div class="value" id="playedCount">0</div><div class="hint">Results recorded</div></div>
+    <div class="stat"><div class="label">Goals scored</div><div class="value" id="goalCount">0</div><div class="hint">Across all recorded matches</div></div>
+    <div class="stat"><div class="label">League leader</div><div class="value" id="leaderName" style="font-size:20px">—</div><div class="hint" id="leaderPoints">No standings yet</div></div>
+  </section>
+  <div class="layout">
+    <div>
+      <section class="panel">
+        <div class="panel-head"><div><h3>League standings</h3><p class="sub">Competition points configured below · 1 for a draw</p></div><div class="tools"><input id="tableFilter" class="search" placeholder="Search club…" style="width:170px"></div></div>
+        <div class="tablewrap"><table><thead><tr><th>#</th><th>Club</th><th>PL</th><th>W</th><th>D</th><th>L</th><th>GF</th><th>GA</th><th>GD</th><th>Pts</th></tr></thead><tbody id="standingsBody"></tbody></table><div id="emptyStandings" class="empty">Add clubs to start building your league table.</div></div>
+      </section>
+      <section class="panel">
+        <div class="panel-head"><div><h3>Match results</h3><p class="sub">Latest recorded fixtures and scores</p></div><span class="pill" id="matchTotal">0 matches</span></div>
+        <div id="matchList" class="match-list"><div class="empty">No results recorded yet.</div></div>
+      </section>
+    </div>
+    <div>
+      <section class="panel">
+        <div class="panel-head"><div><h3 class="section-title"><span class="dot"></span>Register a club</h3><p class="sub">Create a team entry for this competition.</p></div></div>
+        <form id="clubForm">
+          <div class="form-grid">
+            <div class="field full"><label for="clubName">Club name *</label><input id="clubName" maxlength="80" required placeholder="e.g. Freetown United"></div>
+            <div class="field"><label for="clubShort">Short name</label><input id="clubShort" maxlength="12" placeholder="e.g. FTU"></div>
+            <div class="field"><label for="clubCity">Home town</label><input id="clubCity" maxlength="60" placeholder="e.g. Freetown"></div>
+            <div class="field full"><label for="clubAttachment">Club registration document / logo (optional)</label><input id="clubAttachment" type="file" accept="image/*,.pdf,.doc,.docx"></div>
+          </div>
+          <div class="actions"><button class="primary" type="submit">+ Add club</button></div>
+        </form>
+      </section>
+      <section class="panel">
+        <div class="panel-head"><div><h3 class="section-title"><span class="dot"></span>Record a result</h3><p class="sub">Select two registered clubs and enter the final score.</p></div></div>
+        <form id="matchForm">
+          <div class="form-grid">
+            <div class="field full"><label for="homeClub">Home club *</label><select id="homeClub" required><option value="">Add clubs first</option></select></div>
+            <div class="field full"><label for="awayClub">Away club *</label><select id="awayClub" required><option value="">Add clubs first</option></select></div>
+            <div class="field"><label for="homeScore">Home goals *</label><input id="homeScore" type="number" min="0" max="99" step="1" required value="0"></div>
+            <div class="field"><label for="awayScore">Away goals *</label><input id="awayScore" type="number" min="0" max="99" step="1" required value="0"></div>
+            <div class="field full"><label for="matchDate">Match date</label><input id="matchDate" type="date"></div>
+            <div class="field full"><label for="matchAttachment">Match sheet / supporting file (optional)</label><input id="matchAttachment" type="file" accept="image/*,.pdf,.doc,.docx"></div>
+          </div>
+          <div class="actions"><button class="primary" type="submit">Save match result</button></div>
+        </form>
+      </section>
+      <section class="panel">
+        <div class="panel-head"><div><h3>Club administration</h3><p class="sub">Review or remove a club entry.</p></div></div>
+        <div id="clubAdminList" class="match-list"><div class="empty">No clubs registered.</div></div>
+        <div class="notice">This standalone edition saves data in this browser on this device. Export backups regularly, especially before clearing browser data or changing phones.</div>
+      </section>
+    </div>
+  </div>
+  <section class="panel" id="competitionPanel">
+  <div class="panel-head"><div><h3>Competition setup</h3><p class="sub">Set the competition identity and season.</p></div></div>
+  <form id="competitionForm" class="form-grid">
+    <div class="field"><label for="competitionName">Competition name</label><input id="competitionName" maxlength="100" placeholder="Elite Football Competition"></div>
+    <div class="field"><label for="competitionSeason">Season</label><input id="competitionSeason" maxlength="30" placeholder="2026/27"></div>
+    <div class="field"><label for="competitionVenue">Main venue / region</label><input id="competitionVenue" maxlength="100" placeholder="Sierra Leone"></div>
+    <div class="field"><label for="pointsWin">Points for a win</label><select id="pointsWin"><option value="3">3 points</option><option value="2">2 points</option></select></div>
+    <div class="full actions"><button class="primary" type="submit">Save competition setup</button></div>
+  </form>
+</section>
+<section class="panel" id="groupsPanel">
+  <div class="panel-head"><div><h3>Group Stage & Qualification</h3><p class="sub">The Competition Organizer assigns teams to groups. Standings are calculated from group-stage results.</p></div></div>
+  <div id="groupAssignmentList" class="match-list"></div>
+  <div class="actions"><button class="primary" id="generateKnockoutBtn" type="button">Generate Next Round from Group Positions</button></div>
+  <p class="sub" style="margin-top:9px">Qualification rule: group winners are paired against runners-up from other groups where possible. Confirm the proposed fixtures before the next round begins.</p>
+  <div id="groupStandings"></div>
+</section>
+<section class="panel" id="fixturesPanel">
+  <div class="panel-head"><div><h3>Fixture planner</h3><p class="sub">Schedule upcoming matches separately from completed results.</p></div><span class="pill" id="fixtureTotal">0 fixtures</span></div>
+  <form id="fixtureForm" class="form-grid">
+    <div class="field"><label for="fixtureHome">Home club</label><select id="fixtureHome" required><option value="">Register clubs first</option></select></div>
+    <div class="field"><label for="fixtureAway">Away club</label><select id="fixtureAway" required><option value="">Register clubs first</option></select></div>
+    <div class="field"><label for="fixtureDate">Date</label><input id="fixtureDate" type="date" required></div>
+    <div class="field"><label for="fixtureVenue">Venue</label><input id="fixtureVenue" maxlength="100" placeholder="Stadium / ground"></div>
+    <div class="field full"><label for="fixtureAttachment">Fixture document (optional)</label><input id="fixtureAttachment" type="file" accept="image/*,.pdf,.doc,.docx"></div>
+    <div class="full actions"><button class="primary" type="submit">Schedule fixture</button></div>
+  </form>
+  <div id="fixtureList" class="match-list" style="margin-top:15px"><div class="empty">No fixtures scheduled yet.</div></div>
+</section>
+<section class="panel" id="playersPanel">
+  <div class="panel-head"><div><h3>Player registration</h3><p class="sub">Maintain a simple squad register for each club.</p></div><span class="pill" id="playerTotal">0 players</span></div>
+  <form id="playerForm" class="form-grid">
+    <div class="field"><label for="playerName">Player full name *</label><input id="playerName" maxlength="100" required placeholder="Player name"></div>
+    <div class="field"><label for="playerClub">Club *</label><select id="playerClub" required><option value="">Register clubs first</option></select></div>
+    <div class="field"><label for="playerNumber">Shirt number</label><input id="playerNumber" type="number" min="1" max="99" placeholder="e.g. 10"></div>
+    <div class="field"><label for="playerPosition">Position</label><select id="playerPosition"><option>Goalkeeper</option><option>Defender</option><option>Midfielder</option><option>Forward</option><option>Other</option></select></div>
+    <div class="field full"><label for="playerAttachment">Player photo / ID / registration document (optional)</label><input id="playerAttachment" type="file" accept="image/*,.pdf,.doc,.docx"></div>
+    <div class="full actions"><button class="primary" type="submit">Register player</button></div>
+  </form>
+  <div class="field" style="margin:14px 0"><label for="playerFilter">Search players</label><input id="playerFilter" class="search" placeholder="Search by name, club or position"></div>
+  <div class="tablewrap"><table><thead><tr><th>Player</th><th>Club</th><th>No.</th><th>Position</th><th>Action</th></tr></thead><tbody id="playerBody"></tbody></table><div id="emptyPlayers" class="empty">No players registered yet.</div></div>
+</section>
+<div class="footer">Elite Football Manager · Designed by Alhaji Abu Koroma · Standalone edition</div>
+</main>
+</div>
+<div id="toast" class="toast" role="status" aria-live="polite"></div>
+<script>
+(function(){
+'use strict';
+const STORE='elite_football_manager_v1';
+let db={clubs:[],matches:[],fixtures:[],players:[],groups:['A','B','C','D'],competition:{name:'Elite Football Competition',season:'2026/27',venue:'Sierra Leone',pointsWin:3},theme:'light'};
+const $=id=>document.getElementById(id);
+function id(){return 'id-'+Date.now().toString(36)+'-'+Math.random().toString(36).slice(2,8)}
+function notify(message){const t=$('toast');t.textContent=message;t.classList.add('show');clearTimeout(notify.timer);notify.timer=setTimeout(()=>t.classList.remove('show'),2600)}
+function save(){try{localStorage.setItem(STORE,JSON.stringify(db));$('saveStatus').textContent='● Saved on this device';$('saveStatus').style.background='#e5f7ef';$('saveStatus').style.color='#13865c'}catch(e){$('saveStatus').textContent='! Save unavailable';$('saveStatus').style.background='#fff0f0';$('saveStatus').style.color='#bd3d4b';notify('Browser storage is unavailable. Export a backup now.')}}
+function load(){try{const raw=localStorage.getItem(STORE);if(raw){const x=JSON.parse(raw);if(x&&Array.isArray(x.clubs)&&Array.isArray(x.matches))db={clubs:x.clubs,matches:x.matches,fixtures:Array.isArray(x.fixtures)?x.fixtures:[],players:Array.isArray(x.players)?x.players:[],groups:Array.isArray(x.groups)?x.groups:['A','B','C','D'],competition:x.competition||{name:'Elite Football Competition',season:'2026/27',venue:'Sierra Leone',pointsWin:3},theme:x.theme==='dark'?'dark':'light'}}}catch(e){notify('Saved data could not be read.');}document.body.dataset.theme=db.theme||'light';render()}
+function esc(s){return String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
+function stats(){const m=db.matches;return db.clubs.map(c=>{let pl=0,w=0,d=0,l=0,gf=0,ga=0,pts=0;for(const x of m){if(x.homeId!==c.id&&x.awayId!==c.id)continue;pl++;const home=x.homeId===c.id;const f=Number(home?x.homeScore:x.awayScore),a=Number(home?x.awayScore:x.homeScore);gf+=f;ga+=a;if(f>a){w++;pts+=Number(db.competition?.pointsWin||3)}else if(f===a){d++;pts++}else l++}return {...c,pl,w,d,l,gf,ga,gd:gf-ga,pts}}).sort((a,b)=>b.pts-a.pts||b.gd-a.gd||b.gf-a.gf||a.name.localeCompare(b.name))}
+function render(){const rows=stats(),q=$('tableFilter').value.trim().toLowerCase();$('clubCount').textContent=db.clubs.length;$('playedCount').textContent=db.matches.length;$('goalCount').textContent=db.matches.reduce((s,m)=>s+Number(m.homeScore)+Number(m.awayScore),0);$('leaderName').textContent=rows.length&&rows[0].pl?rows[0].short||rows[0].name:'—';$('leaderPoints').textContent=rows.length&&rows[0].pl?rows[0].pts+' points':'No standings yet';
+const filtered=rows.filter(r=>(r.name+' '+r.short+' '+r.city).toLowerCase().includes(q));$('standingsBody').innerHTML=filtered.map((r,i)=>`<tr><td class="rank">${rows.indexOf(r)+1}</td><td><span class="team">${esc(r.name)}</span><small>${esc(r.city||'')}</small></td><td>${r.pl}</td><td>${r.w}</td><td>${r.d}</td><td>${r.l}</td><td>${r.gf}</td><td>${r.ga}</td><td class="${r.gd>0?'positive':r.gd<0?'negative':''}">${r.gd>0?'+':''}${r.gd}</td><td><strong>${r.pts}</strong></td></tr>`).join('');$('emptyStandings').classList.toggle('hidden',filtered.length>0);
+const sortedMatches=[...db.matches].sort((a,b)=>(b.date||'').localeCompare(a.date||'')||b.createdAt-a.createdAt);$('matchTotal').textContent=db.matches.length+' match'+(db.matches.length===1?'':'es');$('matchList').innerHTML=sortedMatches.length?sortedMatches.map(m=>{const h=db.clubs.find(c=>c.id===m.homeId),a=db.clubs.find(c=>c.id===m.awayId);return `<div class="match"><div class="club">${esc(h?h.name:'Removed club')}<div class="match-meta">${esc(m.date||'Date not set')} ${m.attachment?' · '+attachmentLink(m.attachment):''}</div></div><div class="score">${m.homeScore} : ${m.awayScore}</div><div class="club">${esc(a?a.name:'Removed club')}<div class="match-meta" style="text-align:right">Full time</div></div><button class="danger" title="Delete result" data-delete-match="${m.id}" style="grid-column:1/-1;justify-self:end;padding:6px 9px;font-size:11px">Delete result</button></div>`}).join(''):'<div class="empty">No results recorded yet.</div>';
+const options=db.clubs.map(c=>`<option value="${c.id}">${esc(c.name)}</option>`).join('');for(const key of ['homeClub','awayClub','fixtureHome','fixtureAway','playerClub']){const old=$(key).value;$(key).innerHTML=options||'<option value="">Add clubs first</option>';if(db.clubs.some(c=>c.id===old))$(key).value=old}
+renderExtras();renderGroups();
+$('clubAdminList').innerHTML=db.clubs.length?db.clubs.map(c=>`<div class="match" style="grid-template-columns:1fr auto"><div class="club">${esc(c.name)}<div class="match-meta">${esc(c.short||'No short name')} · ${esc(c.city||'Town not set')} ${c.attachment?' · '+attachmentLink(c.attachment):''}</div></div><button class="danger" data-delete-club="${c.id}" style="padding:7px 10px;font-size:12px">Remove</button></div>`).join(''):'<div class="empty">No clubs registered.</div>';
+}
+function renderGroups(){
+ const groups=Array.isArray(db.groups)&&db.groups.length?db.groups:['A','B','C','D'];
+ const canAssign=!!session&&['developer','admin','organizer','club'].includes(session.role);
+ $('groupAssignmentList').innerHTML=db.clubs.length?db.clubs.map(c=>`<div class="match" style="grid-template-columns:1fr minmax(100px,160px)"><div class="club">${esc(c.name)}<div class="match-meta">Current group: ${esc(c.group||'Unassigned')}</div></div><div class="field"><label>Group</label><select data-group-club="${esc(c.id)}" ${canAssign?'':'disabled'}><option value="">Unassigned</option>${groups.map(g=>`<option value="${esc(g)}" ${c.group===g?'selected':''}>Group ${esc(g)}</option>`).join('')}</select></div></div>`).join(''):'<div class="empty">Register teams first, then assign them to groups.</div>';
+ const names=[...new Set(db.clubs.map(c=>c.group).filter(Boolean))].sort();
+ $('groupStandings').innerHTML=names.length?names.map(g=>{const rows=stats().filter(c=>c.group===g);return `<div class="panel" style="margin-top:14px;box-shadow:none"><h3>Group ${esc(g)} Standings</h3><div class="tablewrap" style="margin-top:9px"><table><thead><tr><th>Pos</th><th>Team</th><th>PL</th><th>GD</th><th>Pts</th></tr></thead><tbody>${rows.map((r,i)=>`<tr><td>${i+1}</td><td>${esc(r.name)}</td><td>${r.pl}</td><td>${r.gd>0?'+':''}${r.gd}</td><td><strong>${r.pts}</strong></td></tr>`).join('')}</tbody></table></div></div>`}).join(''):'<div class="empty">Assign teams to groups to display group standings.</div>';
+ $('generateKnockoutBtn').style.display=canAssign?'':'none';
+}
+function generateKnockout(){
+ if(!session||!['developer','admin','organizer','club'].includes(session.role))return notify('Only the competition organizer or administrators can generate the next round.');
+ const groupNames=[...new Set(db.clubs.map(c=>c.group).filter(Boolean))].sort();
+ if(groupNames.length<2)return notify('Assign teams to at least two groups first.');
+ const tables=groupNames.map(g=>({g,rows:stats().filter(c=>c.group===g)}));
+ if(tables.some(t=>t.rows.length<2))return notify('Each group needs at least two assigned teams to qualify a winner and runner-up.');
+ const pairs=[]; for(let i=0;i<tables.length;i++){const next=(i+1)%tables.length; if(i===next)continue; const winner=tables[i].rows[0], runner=tables[next].rows[1]; if(winner&&runner&&winner.id!==runner.id&&!pairs.some(p=>(p.homeId===winner.id&&p.awayId===runner.id)||(p.homeId===runner.id&&p.awayId===winner.id)))pairs.push({homeId:winner.id,awayId:runner.id,groupStage:false,round:'Knockout - next round'});}
+ if(!pairs.length)return notify('No valid qualification pairings could be created. Check group assignments.');
+ const summary=pairs.map(p=>`${db.clubs.find(c=>c.id===p.homeId)?.name} vs ${db.clubs.find(c=>c.id===p.awayId)?.name}`).join('\n');
+ if(!confirm('Create next-round fixtures based on current group positions?\n\n'+summary+'\n\nReview group-stage results first.'))return;
+ pairs.forEach(p=>db.fixtures.push({id:id(),...p,date:'',venue:'',createdAt:Date.now()})); save();render();notify('Next-round fixtures generated from group positions.');
+}
+function renderExtras(){
+ const cp=db.competition||{}; $('competitionName').value=cp.name||'Elite Football Competition'; $('competitionSeason').value=cp.season||''; $('competitionVenue').value=cp.venue||''; $('pointsWin').value=String(cp.pointsWin||3);
+ const fixtures=[...(db.fixtures||[])].sort((a,b)=>(a.date||'').localeCompare(b.date||'')); $('fixtureTotal').textContent=fixtures.length+' fixture'+(fixtures.length===1?'':'s');
+ $('fixtureList').innerHTML=fixtures.length?fixtures.map(f=>{const h=db.clubs.find(c=>c.id===f.homeId),a=db.clubs.find(c=>c.id===f.awayId);return `<div class="match"><div class="club">${esc(h?.name||'Removed club')}<div class="match-meta">${esc(f.date||'Date not set')} · ${esc(f.venue||'Venue TBC')} ${f.attachment?' · '+attachmentLink(f.attachment):''}</div></div><div class="score">VS</div><div class="club">${esc(a?.name||'Removed club')}<div class="match-meta" style="text-align:right">Scheduled</div></div><div style="grid-column:1/-1;display:flex;justify-content:flex-end;gap:8px"><button class="soft" data-fixture-result="${esc(f.id)}">Record result</button><button class="danger" data-delete-fixture="${esc(f.id)}">Cancel fixture</button></div></div>`}).join(''):'<div class="empty">No fixtures scheduled yet.</div>';
+ const players=db.players||[], q=($('playerFilter')?.value||'').trim().toLowerCase(); $('playerTotal').textContent=players.length+' player'+(players.length===1?'':'s'); const filtered=players.filter(p=>[p.name,p.position,db.clubs.find(c=>c.id===p.clubId)?.name].join(' ').toLowerCase().includes(q));
+ $('playerBody').innerHTML=filtered.map(p=>`<tr><td><strong>${esc(p.name)}</strong></td><td>${esc(db.clubs.find(c=>c.id===p.clubId)?.name||'Unassigned')}</td><td>${esc(p.number||'—')}</td><td>${esc(p.position||'Other')}${p.attachment?'<div>'+attachmentLink(p.attachment)+'</div>':''}</td><td><button class="danger" data-delete-player="${esc(p.id)}" style="padding:6px 9px;font-size:11px">Remove</button></td></tr>`).join(''); $('emptyPlayers').classList.toggle('hidden',filtered.length>0);
+}
+async function readAttachment(inputId){const f=$(inputId)?.files?.[0];if(!f)return null;if(f.size>2*1024*1024){notify('Attachment must be 2 MB or smaller.');throw new Error('Attachment too large')}return {name:f.name,type:f.type||'application/octet-stream',data:await new Promise((resolve,reject)=>{const r=new FileReader();r.onload=()=>resolve(r.result);r.onerror=()=>reject(new Error('Could not read attachment'));r.readAsDataURL(f)}),size:f.size}}
+function attachmentLink(a){if(!a)return '';return `<a href="${a.data}" download="${esc(a.name)}" target="_blank" rel="noopener">📎 ${esc(a.name)}</a>`}
+$('groupAssignmentList').addEventListener('change',e=>{const sel=e.target.closest('[data-group-club]');if(!sel)return;if(!session||!['developer','admin','organizer','club'].includes(session.role)){sel.value='';return notify('Only competition organizers can assign groups.')}const c=db.clubs.find(x=>x.id===sel.dataset.groupClub);if(!c)return;c.group=sel.value||'';save();render();notify('Team group assignment saved.')});
+$('generateKnockoutBtn').addEventListener('click',generateKnockout);
+$('competitionForm').addEventListener('submit',e=>{e.preventDefault();if(!session||!['developer','admin'].includes(session.role))return notify('Only platform administrators can change competition setup.');db.competition={name:$('competitionName').value.trim()||'Elite Football Competition',season:$('competitionSeason').value.trim(),venue:$('competitionVenue').value.trim(),pointsWin:Number($('pointsWin').value)===2?2:3};save();render();notify('Competition setup saved.')});
+$('fixtureForm').addEventListener('submit',async e=>{e.preventDefault();if(!session||!['developer','admin'].includes(session.role))return notify('Only platform administrators can schedule fixtures.');const homeId=$('fixtureHome').value,awayId=$('fixtureAway').value;if(!homeId||!awayId||homeId===awayId)return notify('Choose two different clubs.');let attachment;try{attachment=await readAttachment('fixtureAttachment')}catch{return}db.fixtures.push({id:id(),homeId,awayId,date:$('fixtureDate').value,venue:$('fixtureVenue').value.trim(),attachment,createdAt:Date.now()});save();render();e.target.reset();notify('Fixture scheduled.')});
+$('playerForm').addEventListener('submit',async e=>{e.preventDefault();if(!session||!['developer','admin','club'].includes(session.role))return notify('Your role cannot register players.');const name=$('playerName').value.trim(),clubId=$('playerClub').value;if(!name||!clubId)return notify('Enter the player name and club.');if(session.role==='club'&&session.clubId!==clubId)return notify('You can only manage players for your assigned club.');let attachment;try{attachment=await readAttachment('playerAttachment')}catch{return}db.players.push({id:id(),name,clubId,number:$('playerNumber').value,position:$('playerPosition').value,attachment,createdAt:Date.now()});save();render();e.target.reset();notify('Player registered.')});
+$('playerFilter').addEventListener('input',renderExtras);
+$('competitionPanel').dataset.adminOnly='true';$('fixturesPanel').dataset.adminOnly='true';
+$('clubForm').addEventListener('submit',async e=>{e.preventDefault();if(!session||!['developer','admin'].includes(session.role))return notify('Sign in as a platform administrator to register clubs.');const name=$('clubName').value.trim();if(!name)return;if(db.clubs.some(c=>c.name.toLowerCase()===name.toLowerCase()))return notify('That club is already registered.');let attachment;try{attachment=await readAttachment('clubAttachment')}catch{return}db.clubs.push({id:id(),name,short:$('clubShort').value.trim(),city:$('clubCity').value.trim(),attachment});save();render();e.target.reset();notify('Club added successfully.')});
+$('matchForm').addEventListener('submit',async e=>{e.preventDefault();if(!session||!['developer','admin'].includes(session.role))return notify('Sign in as a platform administrator to record results.');const homeId=$('homeClub').value,awayId=$('awayClub').value;if(!homeId||!awayId)return notify('Register at least two clubs first.');if(homeId===awayId)return notify('Choose two different clubs.');const hs=Number($('homeScore').value),as=Number($('awayScore').value);if(!Number.isInteger(hs)||!Number.isInteger(as)||hs<0||as<0||hs>99||as>99)return notify('Enter valid goal scores.');let attachment;try{attachment=await readAttachment('matchAttachment')}catch{return}db.matches.push({id:id(),homeId,awayId,homeScore:hs,awayScore:as,date:$('matchDate').value,attachment,createdAt:Date.now()});save();render();$('homeScore').value='0';$('awayScore').value='0';notify('Match result saved.')});
+$('tableFilter').addEventListener('input',render);
+document.addEventListener('click',e=>{const fr=e.target.closest('[data-fixture-result]');if(fr){if(!session||!['developer','admin'].includes(session.role))return notify('Only platform administrators can record results from fixtures.');const f=db.fixtures.find(x=>x.id===fr.dataset.fixtureResult);if(!f)return;const h=prompt('Home goals?','0');if(h===null)return;const a=prompt('Away goals?','0');if(a===null)return;if(!/^\d+$/.test(h)||!/^\d+$/.test(a)||Number(h)>99||Number(a)>99)return notify('Enter valid scores from 0 to 99.');db.matches.push({id:id(),homeId:f.homeId,awayId:f.awayId,homeScore:Number(h),awayScore:Number(a),date:f.date,createdAt:Date.now()});db.fixtures=db.fixtures.filter(x=>x.id!==f.id);save();render();notify('Fixture result recorded.');return}const df=e.target.closest('[data-delete-fixture]');if(df){if(!session||!['developer','admin'].includes(session.role))return notify('Only platform administrators can cancel fixtures.');if(confirm('Cancel this fixture?')){db.fixtures=db.fixtures.filter(x=>x.id!==df.dataset.deleteFixture);save();render();notify('Fixture cancelled.')}return}const dp=e.target.closest('[data-delete-player]');if(dp){if(!session||!['developer','admin','club'].includes(session.role))return;const pl=db.players.find(x=>x.id===dp.dataset.deletePlayer);if(!pl)return;if(session.role==='club'&&session.clubId!==pl.clubId)return notify('You can only remove players from your assigned club.');if(confirm('Remove this player from the register?')){db.players=db.players.filter(x=>x.id!==pl.id);save();render();notify('Player removed.')}return}const m=e.target.closest('[data-delete-match]');if(m){if(confirm('Delete this match result? The standings will be recalculated.')){db.matches=db.matches.filter(x=>x.id!==m.dataset.deleteMatch);save();render();notify('Match result deleted.')}return}const c=e.target.closest('[data-delete-club]');if(c){const club=db.clubs.find(x=>x.id===c.dataset.deleteClub);if(!club)return;if(confirm('Remove '+club.name+' and all match results involving this club?')){db.matches=db.matches.filter(x=>x.homeId!==club.id&&x.awayId!==club.id);db.clubs=db.clubs.filter(x=>x.id!==club.id);save();render();notify('Club and related results removed.')}}});
+$('themeBtn').addEventListener('click',()=>{if(!session||session.role!=='developer')return notify('Only the Master Developer can change the default theme.');db.theme=db.theme==='dark'?'light':'dark';document.body.dataset.theme=db.theme;save();notify(db.theme==='dark'?'Default dark theme enabled.':'Default light theme enabled.')});
+$('exportBtn').addEventListener('click',()=>{if(!session||!['developer','admin'].includes(session.role))return notify('Viewer access is read-only. Backup export is restricted to authorized administrators.');const payload={app:'Elite Football Manager',version:1,exportedAt:new Date().toISOString(),data:db};const blob=new Blob([JSON.stringify(payload,null,2)],{type:'application/json'});const url=URL.createObjectURL(blob);const a=document.createElement('a');a.href=url;a.download='elite-football-manager-backup-'+new Date().toISOString().slice(0,10)+'.json';document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),1000);notify('Backup export started.')});
+$('importBtn').addEventListener('click',()=>{if(!session||!['developer','admin'].includes(session.role))return notify('Viewer access is read-only. Backup restore is restricted to authorized administrators.');$('restoreFile').click()});
+$('restoreFile').addEventListener('change',async e=>{if(!session||!['developer','admin'].includes(session.role)){e.target.value='';return notify('Viewer access is read-only. Backup restore is restricted to authorized administrators.')}const f=e.target.files&&e.target.files[0];if(!f)return;try{const parsed=JSON.parse(await f.text()),next=parsed.data||parsed;if(!next||!Array.isArray(next.clubs)||!Array.isArray(next.matches))throw Error('This is not a valid Elite Football Manager backup.');if(!confirm('Restore this backup? It will replace the records currently saved on this device. Export your current data first if you need it.'))return;db={clubs:next.clubs,matches:next.matches,fixtures:Array.isArray(next.fixtures)?next.fixtures:[],players:Array.isArray(next.players)?next.players:[],groups:Array.isArray(next.groups)?next.groups:['A','B','C','D'],competition:next.competition||{name:'Elite Football Competition',season:'2026/27',venue:'Sierra Leone',pointsWin:3},theme:next.theme==='dark'?'dark':'light'};save();document.body.dataset.theme=db.theme;render();notify('Backup restored.')}catch(err){notify(err.message||'Could not restore this file.')}finally{e.target.value=''}});
+$('matchDate').value=new Date().toISOString().slice(0,10);
+try{load();}catch(startupLoadError){console.error('Dashboard startup render failed; continuing to initialize sign-in controls:',startupLoadError);}
+
+// --- Access controls, local accounts, freeze switch, broadcast and audit trail ---
+const SECURITY_KEY='elite_football_manager_security_v1';
+let security={users:[],frozen:false,freezeMessage:'This platform has been paused by the Developer.',broadcast:'',audit:[],setup:false};
+let session=null;
+function loadSecurity(){try{const s=JSON.parse(localStorage.getItem(SECURITY_KEY)||'null');if(s&&Array.isArray(s.users))security={...security,...s}}catch(e){}}
+function saveSecurity(){try{localStorage.setItem(SECURITY_KEY,JSON.stringify(security))}catch(e){notify('Could not save security settings on this device.')}}
+function audit(message){security.audit.unshift({at:new Date().toLocaleString(),message});security.audit=security.audit.slice(0,40);saveSecurity();renderSecurityConsole()}
+function authError(message){$('authError').textContent=message||''}
+function showLogin(){session=null;document.body.classList.add('public-mode');$('mainApp').style.display='block';$('authLayer').style.display='grid';$('freezeScreen').style.display='none';$('loginForm').reset();authError('');$('authHeading').textContent='Sign in';$('authIntro').textContent='Sign in with your assigned account to manage the competition. Everyone can view public pages without signing in.'}
+function enterSession(user){session={id:user.id,username:user.username,role:user.role,clubId:user.clubId||''};document.body.classList.remove('public-mode');$('authLayer').style.display='none';$('mainApp').style.display='block';$('signInBtn').textContent='Signed in: '+roleName(user.role);$('signInBtn').style.display='none';$('sessionLabel').textContent=user.username+' · '+roleName(user.role);$('currentRoleLabel').textContent=roleName(user.role);$('adminConsole').style.display=user.role==='developer'||user.role==='admin'?'block':'none';$('securityBanner').textContent='Signed in as '+roleName(user.role)+'. Local-only mode: browser-based permissions are convenience controls, not server-enforced security.';audit('Sign-in: '+user.username+' ('+roleName(user.role)+')');applyRolePermissions();render();renderSecurityConsole();checkFrozen()}
+function roleName(role){return ({developer:'Master Developer',admin:'Platform Admin',organizer:'Competition Organizer',club:'Competition Organizer',viewer:'Viewer'})[role]||'User'}
+function applyRolePermissions(){
+ const publicViewer=!session, viewer=publicViewer||session.role==='viewer', organizer=!!session&&(session.role==='organizer'||session.role==='club'), elevated=!!session&&['developer','admin'].includes(session.role);
+ document.body.classList.toggle('public-mode',publicViewer);document.body.classList.toggle('viewer-mode',viewer);
+ $('sessionLabel').textContent=publicViewer?'Public Viewer · Read-only':session.username+' · '+roleName(session.role);$('adminConsole').style.display=elevated?'block':'none';
+ $('securityBanner').textContent=publicViewer?'Public viewing mode: all competition pages are visible. Viewing is read-only; sign in with an authorized account to manage records.': 'Signed in as '+roleName(session.role)+'. Local-only mode: browser-based permissions are convenience controls, not server-enforced security.';
+ $('signInBtn').style.display=publicViewer?'':'none';$('logoutBtn').style.display=publicViewer?'none':'';
+ const canManageRecords=!!session&&!viewer, canManageCore=!!session&&['developer','admin'].includes(session.role);
+ $('clubForm').style.display=canManageCore?'':'none';$('matchForm').style.display=canManageCore?'':'none';$('clubAdminList').style.display=canManageCore?'':'none';
+ $('playerForm').style.display=(canManageCore||organizer)?'':'none';
+ document.querySelectorAll('[data-admin-only]').forEach(el=>el.style.display=canManageCore?'':'none');
+ document.querySelectorAll('[data-delete-match],[data-delete-club],[data-delete-fixture]').forEach(el=>el.style.display=canManageCore?'':'none');
+ document.querySelectorAll('[data-delete-player]').forEach(el=>el.style.display=(canManageCore||organizer)?'':'none');
+ $('competitionForm').style.display=canManageCore?'':'none';$('fixtureForm').style.display=canManageCore?'':'none';$('fixturesPanel').style.display='';$('competitionPanel').style.display='';
+ $('importBtn').style.display=canManageCore?'':'none';$('exportBtn').style.display=canManageCore?'':'none';
+ $('freezeBtn').style.display=session&&session.role==='developer'?'':'none';$('unfreezeBtn').style.display=session&&session.role==='developer'?'':'none';
+ $('addUserBtn').style.display=canManageCore?'':'none';$('publishBroadcastBtn').style.display=canManageCore?'':'none';$('clearBroadcastBtn').style.display=canManageCore?'':'none';$('broadcastText').disabled=!canManageCore;
+ document.querySelectorAll('#mainApp form input,#mainApp form select,#mainApp form textarea,#mainApp form button').forEach(el=>{el.disabled=viewer;});
+ if(!viewer){$('playerForm').querySelectorAll('input,select,button').forEach(el=>el.disabled=!(canManageCore||organizer));$('tableFilter').readOnly=false;$('playerFilter').readOnly=false;}
+ $('themeBtn').style.display=session&&session.role==='developer'?'':'none';$('themeBtn').disabled=!(session&&session.role==='developer');$('exportBtn').disabled=!canManageCore;$('importBtn').disabled=!canManageCore;$('restoreFile').disabled=!canManageCore;
+}
+function checkFrozen(){if(security.frozen&&(!session||session.role!=='developer')){$('freezeScreen').style.display='grid';$('mainApp').style.display='none'}else{$('freezeScreen').style.display='none';if(session)$('mainApp').style.display='block'}$('freezeMessage').textContent=security.freezeMessage||'This platform has been paused by the Developer.'}
+function renderSecurityConsole(){if(!$('userList'))return;$('newUserClub').innerHTML='<option value="">Choose club</option>'+db.clubs.map(c=>`<option value="${esc(c.id)}">${esc(c.name)}</option>`).join('');$('broadcastBanner').textContent=security.broadcast||'';$('broadcastBanner').classList.toggle('hidden',!security.broadcast);$('broadcastText').value=security.broadcast||'';$('userList').innerHTML=security.users.map(u=>`<div class="user-row"><div><strong>${esc(u.username)}</strong><small>${esc(roleName(u.role))}${u.clubId?' · '+esc(db.clubs.find(c=>c.id===u.clubId)?.name||'Club unassigned'):''}${u.suspended?' · SUSPENDED':''}</small></div><div>${u.role==='developer'?'<span class="pill">Protected</span>':`<button class="soft" data-toggle-user="${esc(u.id)}">${u.suspended?'Reactivate':'Suspend'}</button> <button class="danger" data-delete-user="${esc(u.id)}">Remove</button>`}</div></div>`).join('')||'<p class="sub">No accounts yet.</p>';$('auditList').innerHTML=security.audit.slice(0,12).map(a=>`<div class="user-row"><div>${esc(a.message)}<small>${esc(a.at)}</small></div></div>`).join('')||'No activity recorded yet.'}
+function setupDeveloper(){
+  const status=$('setupDeveloperStatus');
+  const existing=security.users.some(u=>u.role==='developer');
+  if(existing){
+    $('developerSetupForm').classList.add('hidden');
+    $('setupDeveloperBtn').textContent='Go to Master Developer sign-in';
+    status.textContent='Your Master Developer account already exists. You do not need to create it again. Enter its existing username and password in the sign-in fields above. Only one Master Developer account is allowed; no second super account will be created.';
+    $('authHeading').textContent='Sign in to your existing Master Developer account';
+    authError('Use your existing username and password. If you are on the public dashboard, tap “Sign in for editing” first.');
+    $('loginUser').focus();
+    return;
+  }
+  status.textContent='No Master Developer account was found in this copy of Elite Football Manager. If you created one in another downloaded HTML copy, this copy may have separate browser storage. Do not create another account unless you are sure this is the original copy or you have a backup.';
+  $('authHeading').textContent='Create Master Developer account';
+  const form=$('developerSetupForm');form.classList.remove('hidden');$('setupDeveloperBtn').classList.add('hidden');
+  authError('Enter a username and a password of at least 12 characters, then tap Save Developer account.');
+  $('setupUsername').focus();
+}
+$('setupDeveloperBtn').addEventListener('click',setupDeveloper);
+$('cancelDeveloperSetupBtn').addEventListener('click',()=>{$('developerSetupForm').classList.add('hidden');$('setupDeveloperBtn').classList.remove('hidden');$('setupDeveloperStatus').textContent='';authError('')});
+$('developerSetupForm').addEventListener('submit',e=>{
+  e.preventDefault();
+  if(security.users.some(u=>u.role==='developer')){
+    $('developerSetupForm').classList.add('hidden');
+    $('setupDeveloperBtn').classList.remove('hidden');
+    $('setupDeveloperBtn').textContent='Go to Master Developer sign-in';
+    $('setupDeveloperStatus').textContent='Your existing Master Developer account remains the only one. Enter its current username and password in the sign-in fields above.';
+    $('authHeading').textContent='Sign in to your existing Master Developer account';
+    authError('Use your existing username and password. No second Developer account was created.');
+    $('loginUser').focus();
+    return;
+  }
+  const username=$('setupUsername').value.trim(),pass=$('setupPassword').value,confirmPass=$('setupPasswordConfirm').value;
+  if(username.length<4){authError('Username must be at least 4 characters.');return}
+  if(pass.length<12){authError('Password must be at least 12 characters.');return}
+  if(pass!==confirmPass){authError('The passwords do not match. Please enter them again.');$('setupPasswordConfirm').focus();return}
+  const duplicate=security.users.some(u=>u.role!=='developer'&&u.username.toLowerCase()===username.toLowerCase());
+  if(duplicate){authError('That username belongs to another account. Choose a different username.');return}
+  try{
+    security.users=security.users.filter(u=>u.role!=='developer');
+    security.users.push({id:'u-'+Date.now(),username,password:pass,role:'developer',suspended:false,createdAt:Date.now()});security.setup=true;
+    localStorage.setItem(SECURITY_KEY,JSON.stringify(security));
+  }catch(err){authError('Could not save this account in browser storage. Open the HTML file in Chrome and allow site storage, then try again.');return}
+  $('loginUser').value=username;$('loginPass').value='';$('developerSetupForm').classList.add('hidden');$('setupDeveloperBtn').classList.remove('hidden');$('developerSetupForm').reset();$('setupDeveloperStatus').textContent='Master Developer login saved on this device. Enter your new password above and tap Sign in.';authError('Account saved. Sign in with the username and password you just created.');$('authHeading').textContent='Master Developer sign-in';$('loginPass').focus();
+});
+$('loginForm').addEventListener('submit',e=>{
+  e.preventDefault();
+  try {
+    loadSecurity();
+    const username=$('loginUser').value.trim().toLowerCase();
+    const password=$('loginPass').value;
+    const user=security.users.find(u=>String(u.username||'').trim().toLowerCase()===username&&u.password===password&&!u.suspended);
+    if(!user){
+      const hasDeveloper=security.users.some(u=>u.role==='developer');
+      authError(hasDeveloper?'Sign-in failed. The username/password did not match an active account in this copy. Check the exact details used when creating the Master Developer account.':'No account is saved in this copy of the HTML file. Open the original file where you created the account; do not create another account yet.');
+      return;
+    }
+    if(user.role!=='developer'&&user.role!=='admin'){
+      authError('These details belong to '+roleName(user.role)+', not the Master Developer. Use the original Master Developer account.');
+      return;
+    }
+    if(security.frozen&&user.role!=='developer'){
+      authError('Platform suspended. Only the Developer can reactivate it.');
+      return;
+    }
+    authError('');
+    // Give the Developer panel priority, independently of other dashboard rendering.
+    session={id:user.id,username:user.username,role:user.role,clubId:user.clubId||''};
+    document.body.classList.remove('public-mode','viewer-mode');
+    $('authLayer').style.display='none';
+    $('mainApp').style.display='block';
+    $('signInBtn').style.display='none';
+    $('sessionLabel').textContent=user.username+' · '+roleName(user.role);
+    $('currentRoleLabel').textContent=roleName(user.role);
+    $('adminConsole').style.display='block';
+    $('adminDetails').open=true;
+    $('securityBanner').textContent='Signed in as '+roleName(user.role)+'. Local-only mode: browser-based permissions are convenience controls, not server-enforced security.';
+    $('themeBtn').style.display=''; $('exportBtn').style.display=''; $('importBtn').style.display='';
+    $('freezeBtn').style.display=user.role==='developer'?'':'none';
+    $('unfreezeBtn').style.display=user.role==='developer'?'':'none';
+    $('addUserBtn').style.display=''; $('publishBroadcastBtn').style.display=''; $('clearBroadcastBtn').style.display='';
+    $('broadcastText').disabled=false; $('logoutBtn').style.display='';
+    try { applyRolePermissions(); } catch(permissionError) { console.error('Permission refresh warning:',permissionError); }
+    try { renderSecurityConsole(); } catch(consoleError) { console.error('Developer console render warning:',consoleError); }
+    try { render(); } catch(renderError) { console.error('Dashboard refresh warning:',renderError); }
+    try { audit('Sign-in: '+user.username+' ('+roleName(user.role)+')'); } catch(auditError) { console.error('Audit warning:',auditError); }
+    $('adminConsole').style.display='block'; $('adminDetails').open=true;
+    if(user.role==='developer'){ $('freezeBtn').style.display=''; $('unfreezeBtn').style.display=''; $('themeBtn').style.display=''; }
+    setTimeout(()=>{try{$('adminConsole').scrollIntoView({behavior:'smooth',block:'start'});}catch(scrollError){}},80);
+  } catch(err) {
+    console.error('Sign-in error:',err);
+    if(session&&(session.role==='developer'||session.role==='admin')){
+      document.body.classList.remove('public-mode','viewer-mode');
+      $('authLayer').style.display='none'; $('mainApp').style.display='block';
+      $('adminConsole').style.display='block'; $('adminDetails').open=true;
+      $('sessionLabel').textContent=session.username+' · '+roleName(session.role);
+    } else {
+      authError('Sign-in could not finish: '+(err&&err.message?err.message:'unknown error'));
+    }
+  }
+});
+$('freezeDeveloperLogin').addEventListener('click',()=>{showLogin();$('loginUser').focus()});
+$('signInBtn').addEventListener('click',e=>{e.preventDefault();e.stopPropagation();try{loadSecurity();const layer=$('authLayer');const freeze=$('freezeScreen');const main=$('mainApp');document.body.classList.add('public-mode');if(freeze)freeze.style.display='none';if(main)main.style.display='block';layer.classList.remove('hidden');layer.style.display='grid';layer.style.visibility='visible';layer.style.opacity='1';layer.style.pointerEvents='auto';layer.style.zIndex='99999';const found=security.users.some(u=>u.role==='developer');$('authHeading').textContent='Sign in for editing';$('authIntro').textContent=found?'Your Master Developer account is saved in this copy. Enter the exact username and password you created.':'No Master Developer account is visible in this copy. This does not prove the original account is deleted. Do not create another account yet.';$('setupIntro').textContent=found?'Master Developer account found. Sign in above; do not create another account.':'Account not found in this copy. Check that you opened the original HTML file before attempting account setup.';authError('');$('loginUser').focus({preventScroll:true});}catch(err){console.error('Open sign-in panel failed:',err);alert('The sign-in panel could not open: '+(err&&err.message?err.message:'unknown error'));}});
+$('logoutBtn').addEventListener('click',()=>{if(session)audit('Sign-out: '+session.username);showLogin()});
+$('addUserBtn').addEventListener('click',()=>{if(!session||!['developer','admin'].includes(session.role))return;const username=$('newUsername').value.trim(),password=$('newUserPassword').value,role=$('newUserRole').value,clubId=$('newUserClub').value;if(username.length<3||password.length<10)return notify('Username must be 3+ characters and password 10+ characters.');if(security.users.some(u=>u.username.toLowerCase()===username.toLowerCase()))return notify('That username already exists.');if(role==='club')role='organizer';security.users.push({id:'u-'+Date.now()+'-'+Math.random().toString(36).slice(2,6),username,password,role,clubId,suspended:false,createdAt:Date.now()});saveSecurity();audit('Account created: '+username+' ('+roleName(role)+')');$('newUsername').value='';$('newUserPassword').value='';notify('Account created on this device.');renderSecurityConsole()});
+$('publishBroadcastBtn').addEventListener('click',()=>{if(!session||!['developer','admin'].includes(session.role))return;security.broadcast=$('broadcastText').value.trim();saveSecurity();audit('Global announcement updated');renderSecurityConsole();notify('Announcement published locally.')});
+$('clearBroadcastBtn').addEventListener('click',()=>{if(!session||!['developer','admin'].includes(session.role))return;security.broadcast='';saveSecurity();audit('Global announcement cleared');renderSecurityConsole();notify('Announcement cleared.')});
+$('freezeBtn').addEventListener('click',()=>{if(!session||session.role!=='developer')return;const message=prompt('Optional suspension message:',security.freezeMessage);if(message===null)return;security.freezeMessage=message.trim()||'This platform has been paused by the Developer.';security.frozen=true;saveSecurity();audit('Platform suspended by Developer');checkFrozen();notify('Platform suspended. Records have not been deleted.')});
+$('unfreezeBtn').addEventListener('click',()=>{if(!session||session.role!=='developer')return;security.frozen=false;saveSecurity();audit('Platform reactivated by Developer');checkFrozen();notify('Platform reactivated. Existing local records were preserved.')});
+document.addEventListener('submit',e=>{if((!session||session.role==='viewer')&&e.target.closest('#mainApp')){e.preventDefault();e.stopImmediatePropagation();notify('Viewer access is read-only. You can view updates and standings, but cannot edit records.')}},true);
+document.addEventListener('click',e=>{if((!session||session.role==='viewer')&&e.target.closest('#mainApp')&&!e.target.closest('#signInBtn,#logoutBtn,#tableFilter,#playerFilter')){const b=e.target.closest('button');if(b){e.preventDefault();e.stopImmediatePropagation();notify('Viewer access is read-only.')}}const t=e.target.closest('[data-toggle-user]');if(t&&session&&['developer','admin'].includes(session.role)){const u=security.users.find(x=>x.id===t.dataset.toggleUser);if(!u||u.role==='developer')return;if(session.role==='admin'&&u.role==='admin')return notify('Platform Admins cannot suspend other Platform Admins.');u.suspended=!u.suspended;saveSecurity();audit((u.suspended?'Account suspended: ':'Account reactivated: ')+u.username);renderSecurityConsole();return}const d=e.target.closest('[data-delete-user]');if(d&&session&&['developer','admin'].includes(session.role)){const u=security.users.find(x=>x.id===d.dataset.deleteUser);if(!u||u.role==='developer')return;if(session.role==='admin'&&u.role==='admin')return notify('Platform Admins cannot remove other Platform Admins.');if(confirm('Remove account '+u.username+'?')){security.users=security.users.filter(x=>x.id!==u.id);saveSecurity();audit('Account removed: '+u.username);renderSecurityConsole()}}});
+loadSecurity();
+// Update account status immediately after reading local storage, before other UI rendering can fail.
+try {
+  const developerFound = security.users.some(u=>u.role==='developer');
+  if(developerFound){
+    $('authIntro').textContent='A Master Developer account is saved in this copy. Enter the username and password you already created.';
+    $('setupIntro').textContent='Master Developer account found in this copy. Use sign-in; do not create another account.';
+    $('setupDeveloperBtn').textContent='Go to Master Developer sign-in';
+  } else {
+    $('authIntro').textContent='No Master Developer account is visible in this copy. If you created one in another downloaded HTML file, open that original file. Do not create another account here yet.';
+    $('setupIntro').textContent='No account was found in this copy. This does not prove your original account is deleted.';
+    $('setupDeveloperBtn').textContent='First-time setup (only if no account exists)';
+  }
+} catch(statusError) { console.error('Account status display error:', statusError); }
+try{load();}catch(startupLoadError){console.error('Dashboard startup render failed; continuing to initialize sign-in controls:',startupLoadError);}
+// Public Viewer panel is the default; the sign-in portal opens only when requested.
+$('authLayer').style.display='none';$('mainApp').style.display='block';$('signInBtn').style.display='';$('sessionLabel').textContent='Public Viewer · Read-only';$('logoutBtn').style.display='none';document.body.classList.add('public-mode');applyRolePermissions();renderSecurityConsole();
+renderSecurityConsole();
+
+})();
+</script>
+
+<!-- Install support: offline use and "Install app" prompt -->
+<style>#installBar[hidden],#installBtn[hidden]{display:none!important}</style>
+<div id="installBar" hidden style="position:fixed;right:12px;bottom:12px;z-index:50;display:flex;gap:8px;align-items:center;background:#111e30;border:1px solid #26364b;border-radius:12px;padding:8px 10px;box-shadow:0 10px 28px rgba(0,0,0,.35);font:600 12px system-ui,sans-serif;color:#e8eef8;max-width:calc(100vw - 24px);">
+  <span id="installText">Install Elite Football Manager</span>
+  <button id="installBtn" type="button" style="border:0;border-radius:8px;padding:7px 11px;font:700 12px system-ui,sans-serif;background:#e6b94f;color:#0b1728;cursor:pointer;">Install</button>
+  <button id="installClose" type="button" aria-label="Dismiss" style="border:0;background:transparent;color:#a0aec1;font-size:16px;cursor:pointer;line-height:1;">&times;</button>
+</div>
+<script>
+  (function () {
+    if ('serviceWorker' in navigator && (location.protocol === 'https:' || location.hostname === 'localhost')) {
+      window.addEventListener('load', function () {
+        navigator.serviceWorker.register('./service-worker.js').catch(function (err) {
+          console.warn('Offline support registration failed:', err);
+        });
+      });
+    }
+
+    var bar = document.getElementById('installBar');
+    var text = document.getElementById('installText');
+    var btn = document.getElementById('installBtn');
+    var standalone = window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone === true;
+    var dismissed = false;
+    try { dismissed = localStorage.getItem('elite_install_dismissed') === '1'; } catch (e) {}
+    var deferred = null;
+
+    function hide() { bar.hidden = true; }
+    document.getElementById('installClose').addEventListener('click', function () {
+      try { localStorage.setItem('elite_install_dismissed', '1'); } catch (e) {}
+      hide();
+    });
+
+    window.addEventListener('beforeinstallprompt', function (e) {
+      e.preventDefault();
+      deferred = e;
+      if (!standalone && !dismissed) { btn.hidden = false; text.textContent = 'Install Elite Football Manager'; bar.hidden = false; }
+    });
+
+    btn.addEventListener('click', function () {
+      if (!deferred) return;
+      deferred.prompt();
+      deferred.userChoice.finally(function () { deferred = null; hide(); });
+    });
+
+    window.addEventListener('appinstalled', hide);
+
+    var isIOS = /iphone|ipad|ipod/i.test(navigator.userAgent);
+    if (isIOS && !standalone && !dismissed) {
+      text.textContent = 'To install: tap Share, then "Add to Home Screen"';
+      btn.hidden = true;
+      bar.hidden = false;
+    }
+  })();
+</script>
+</body>
+</html>
