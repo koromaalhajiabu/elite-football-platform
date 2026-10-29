@@ -1,11 +1,12 @@
-const CACHE_NAME = 'elite-football-manager-v1';
+const CACHE_NAME = 'elite-football-manager-v2';
 // The whole app is one page with no external scripts, so the shell is all that needs caching.
 const APP_SHELL = [
   './',
   './index.html',
   './manifest.webmanifest',
   './icon-192.png',
-  './icon-512.png'
+  './icon-512.png',
+  './background.jpg'
 ];
 
 self.addEventListener('install', event => {
